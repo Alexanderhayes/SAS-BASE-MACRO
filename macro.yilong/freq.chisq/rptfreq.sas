@@ -1,0 +1,13 @@
+%macro rptfreq(width1=1.5,width2=2.5,width3=1.8,width4=3.5,width5=3.5,width6=2.0,width7=2.0);
+proc report data=report nowindows headline SPLIT="*";
+	title "&title";
+	column datset id col0 col1 col2  ('组间比较'   chisq p) ;   
+	define datset		/display STYLE(COLUMN)=[CELLWIDTH=&width1		cm just=c PROTECTSPECIALCHARS=off font_weight=bold] "   " ;  
+	define id			/display STYLE(COLUMN)=[CELLWIDTH=&width2		cm just=l PROTECTSPECIALCHARS=off] "     " f=id. ;
+	define col0			/display STYLE(COLUMN)=[CELLWIDTH=&width3		cm just=c PROTECTSPECIALCHARS=off] "合计 * N(  %)" ;
+	define col1			/display STYLE(COLUMN)=[CELLWIDTH=&width4	cm just=c PROTECTSPECIALCHARS=off] "注射用利培酮微球 * N(  %)" ;
+	define col2 		/display STYLE(COLUMN)=[CELLWIDTH=&width5	cm just=c PROTECTSPECIALCHARS=off] "口服非典型抗精神病药 * N(  %)" ;
+	define chisq	    /display STYLE(COLUMN)=[CELLWIDTH=&width6	cm just=c PROTECTSPECIALCHARS=off] "卡方";
+	define p			/display STYLE(COLUMN)=[CELLWIDTH=&width7	cm just=c PROTECTSPECIALCHARS=off] "P值";
+run;
+%mend rptfreq;

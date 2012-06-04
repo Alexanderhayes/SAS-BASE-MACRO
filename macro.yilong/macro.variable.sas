@@ -1,0 +1,1 @@
+%let today = %sysfunc(date(),yymmdd10.);
